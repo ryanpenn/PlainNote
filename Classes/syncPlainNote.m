@@ -7,7 +7,7 @@
 //
 
 #import "syncPlainNote.h"
-#import "JSON/JSON.h";
+#import "JSON/JSON.h"
 
 @implementation syncPlainNote
 
@@ -23,7 +23,7 @@
 	
 	NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
 	
-	NSString *postLength = [NSString stringWithFormat:@"%d", [postData length]];
+	NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
 	
 	NSMutableURLRequest *request = [[[NSMutableURLRequest alloc] init] autorelease];
 	[request setURL:[NSURL URLWithString:@"http://plainnote.kosertech.com/account/login.json"]];
@@ -40,7 +40,7 @@
 	NSData *responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&urlResponse error:&error];
 	//result not really needed unless desired 
 	NSString *result = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
-	NSLog(@"Response Code: %d", [urlResponse statusCode]);
+	NSLog(@"Response Code: %ld", (long)[urlResponse statusCode]);
 	if ([urlResponse statusCode] >= 200 && [urlResponse statusCode] < 300) {
 		NSLog(@"Response: %@", result);
 		//here you get the response
@@ -67,7 +67,7 @@
 	
 	NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
 	
-	NSString *postLength = [NSString stringWithFormat:@"%d", [postData length]];
+	NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
 	
 	NSMutableURLRequest *request = [[[NSMutableURLRequest alloc] init] autorelease];
 	[request setURL:[NSURL URLWithString:@"http://plainnote.kosertech.com/notes/update.json"]];
@@ -83,8 +83,9 @@
 	NSError *error = [[NSError alloc] init];
 	NSData *responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&urlResponse error:&error];
 	//result not really needed unless desired 
-	NSString *result = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
-	NSLog(@"Response Code: %d", [urlResponse statusCode]);
+	//NSString *result =
+    [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
+	NSLog(@"Response Code: %ld", (long)[urlResponse statusCode]);
 
 	return [urlResponse statusCode];
 	

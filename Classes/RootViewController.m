@@ -51,7 +51,8 @@
 	UINavigationController *addNavCon = [[UINavigationController alloc] initWithRootViewController:noteDetailViewControler];
 	noteDetailViewControler.noteArray = self.Notes;
 
-	[self presentModalViewController:addNavCon animated:YES];
+	// [self presentModalViewController:addNavCon animated:YES]; // for iOS4
+    [self presentViewController:addNavCon animated:YES completion:nil];
 	
 	[addNavCon release];
 	[noteDetailViewControler release];
@@ -98,13 +99,13 @@
 																						(CFStringRef)@"!*'();:@&=+$,/?%#[]",
 																						kCFStringEncodingUTF8 );
 		
-	//	NSLog(@"Sending %@",content);
-		NSInteger retStatus = [pnSync postNoteWithAccountID:account_id 
+        //	NSLog(@"Sending %@",content);
+		//NSInteger retStatus =
+        [pnSync postNoteWithAccountID:account_id
 												andDeviceID:myUUID 
 												  andPostID:@"fdsa-fdsa-32fds-32fdsa" 
 												 andContent:encodedContent];
 	
-		
 	}
 	
 	
@@ -226,7 +227,8 @@
 	noteDetailViewControler.Notedict = [self.Notes objectAtIndex:indexPath.row];
 	noteDetailViewControler.noteArray = self.Notes;
 	
-	[self presentModalViewController:addNavCon animated:YES];
+	//[self presentModalViewController:addNavCon animated:YES]; // for iOS4
+    [self presentViewController:addNavCon animated:YES completion:nil];
 	
 	[addNavCon release];
 	[noteDetailViewControler release];

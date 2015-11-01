@@ -28,7 +28,7 @@
 	
 	NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
 	
-	NSString *postLength = [NSString stringWithFormat:@"%d", [postData length]];
+	NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
 	
 	NSMutableURLRequest *request = [[[NSMutableURLRequest alloc] init] autorelease];
 	[request setURL:[NSURL URLWithString:@"https://www.instapaper.com/api/add"]];
@@ -45,15 +45,13 @@
 	NSData *responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&urlResponse error:&error];
 	//result not really needed unless desired 
 	NSString *result = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
-	NSLog(@"Response Code: %d", [urlResponse statusCode]);
+	NSLog(@"Response Code: %ld", (long)[urlResponse statusCode]);
 	if ([urlResponse statusCode] >= 200 && [urlResponse statusCode] < 300) {
 		NSLog(@"Response: %@", result);
 		//here you get the response
 		responseCode = YES;
 	}
 	
-	
-
 	
 	return responseCode;
 }

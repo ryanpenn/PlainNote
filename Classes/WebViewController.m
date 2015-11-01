@@ -34,7 +34,8 @@
 	
 	NSString *htmlPath = [[NSBundle mainBundle] pathForResource:@"index" ofType:@"html"];
 	NSURL *bundleUrl = [NSURL fileURLWithPath:[[NSBundle mainBundle] bundlePath]];
-	NSString *html = [[NSString alloc] initWithContentsOfFile:htmlPath];
+    NSString *html = [[NSString alloc] initWithContentsOfFile:htmlPath encoding:NSUTF8StringEncoding error:nil];
+        //[[NSString alloc] initWithContentsOfFile:htmlPath];
 	[self.myWebView loadHTMLString:html baseURL:bundleUrl];
 
 }

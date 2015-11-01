@@ -52,7 +52,8 @@
 
 
 - (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error {
-	[self dismissModalViewControllerAnimated:YES];
+	// [self dismissModalViewControllerAnimated:YES]; // for iOS4
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 
@@ -95,7 +96,8 @@
 	
 	// Get the size of the keyboard.
 	NSDictionary* info = [notif userInfo];
-	NSValue* aValue = [info objectForKey:UIKeyboardBoundsUserInfoKey]; 
+    NSValue* aValue = [info objectForKey:UIKeyboardFrameBeginUserInfoKey];
+        //[info objectForKey:UIKeyboardBoundsUserInfoKey];
 	CGSize keyboardSize = [aValue CGRectValue].size;
 	
 	//resize the scroll view
@@ -114,7 +116,8 @@
 	
 	
 	NSDictionary* info = [notif userInfo];
-	NSValue* aValue = [info objectForKey:UIKeyboardBoundsUserInfoKey];
+    NSValue* aValue = [info objectForKey:UIKeyboardFrameBeginUserInfoKey];
+        //[info objectForKey:UIKeyboardBoundsUserInfoKey];
 	CGSize keyboardSize = [aValue CGRectValue].size;
 	CGRect viewFrame = self.view.frame; 
 	viewFrame.size.height += keyboardSize.height;
@@ -166,7 +169,8 @@
 		NSString *emailBody = self.NoteDetail.text;
 		[picker setMessageBody:emailBody isHTML:NO];
 		
-		[self presentModalViewController:picker animated:YES];
+		// [self presentModalViewController:picker animated:YES]; // for iOS4
+        [self presentViewController:picker animated:YES completion:nil];
 		[picker release];
 		
 		
@@ -226,8 +230,9 @@
 	
 	[self savePlist];
 	
-//	NSLog(@"Save pressed!");
-	[self dismissModalViewControllerAnimated:YES];
+    //	NSLog(@"Save pressed!");
+	// [self dismissModalViewControllerAnimated:YES]; // for iOS4
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 
@@ -273,7 +278,8 @@
 	
 	if(!didEdit)
 	{
-		[self dismissModalViewControllerAnimated:YES];
+		// [self dismissModalViewControllerAnimated:YES]; // for iOS4
+        [self dismissViewControllerAnimated:YES completion:nil];
 	}
 	else
 	{	
@@ -298,7 +304,8 @@
 	}
 	else
 	{
-		[self dismissModalViewControllerAnimated:YES];
+		// [self dismissModalViewControllerAnimated:YES]; // for iOS4
+        [self dismissViewControllerAnimated:YES completion:nil];
 		//NSLog(@"ok");
 	}
 }
